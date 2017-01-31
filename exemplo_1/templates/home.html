@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Home</title>
+    <title></title>
 </head>
 <body>
-	{% if nome %}
-		<h3>Bem vindo, {{ nome }}.</h3>
-	{% endif %}
-	Agora são {{ now }}.
-	<form method="POST">
-		{% csrf_token %}
-		Digite seu nome: <input type="text" name="nome">
-		<input type="submit" value="Enviar">
-	</form>
+{% if nome %}
+    <h3>Bem vindo, {{ nome }}!</h3>
+{% endif %}
+Agora são {{ now }}
+<form method="POST">
+    {% csrf_token %}
+    Digite seu nome: <input type="text" name="nome">
+    <input type="submit" value="Enviar">
+</form>
 </body>
 </html>
