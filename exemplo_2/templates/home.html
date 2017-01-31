@@ -2,29 +2,33 @@
 <html>
 <head>
 	<title>Calculadora</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
 </head>
-<body>
+<body style="font-family: Helvetica;">
 	{% if soma %}
 		{{ soma }}
 	{% endif %}
 	<form method="POST">
 		{% csrf_token %}
-		<label>
-			{{ form.nome.label }}<br>
-			{{ form.nome }}<br>
-			{{ form.nome.errors }}
-		</label><br><br>
-
-		<label>
-			{{ form.num_1.label }}<br>
-			{{ form.num_1 }}
-		</label><br><br>
-
-		<label>
-			{{ form.num_2.label }}<br>
-			{{ form.num_2 }}
-		</label>
+		{{ form }}
 		<input type="submit" value="Somar">
-	</form>
+	</form><br>
+
+	<table>
+		<tr>
+			<th>Nome</th>
+			<th>Número 1</th>
+			<th>Número 2</th>
+			<th>Data/Hora</th>
+		</tr>
+		{% for log in logs %}
+			<tr style="border: 1px solid #ccc;">
+				<td>{{ log.nome }}</td>
+				<td>{{ log.num_1 }}</td>
+				<td>{{ log.num_2 }}</td>
+				<td>{{ log.datahora|date:"D d M Y" }}</td>
+			</tr>
+		{% endfor %}
+	</table>
 </body>
 </html>
