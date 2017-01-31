@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculadora</title>
+</head>
+<body>
+	{% if soma %}
+		{{ soma }}
+	{% endif %}
+	<form method="POST">
+		{% csrf_token %}
+		<label>
+			{{ form.nome.label }}<br>
+			{{ form.nome }}<br>
+			{{ form.nome.errors }}
+		</label><br><br>
+
+		<label>
+			{{ form.num_1.label }}<br>
+			{{ form.num_1 }}
+		</label><br><br>
+
+		<label>
+			{{ form.num_2.label }}<br>
+			{{ form.num_2 }}
+		</label>
+		<input type="submit" value="Somar">
+	</form>
+</body>
+</html>
