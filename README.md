@@ -12,7 +12,7 @@ Projeto exemplo para curso de **Django**
 
 `python manage.py createsuperuser`
 
-Isso iniciará o processo de criação do usuário, baste digitar as informações pedidas e concluir o cadastrado.
+Isso iniciará o processo de criação do usuário, baste digitar as informações pedidas e concluir o cadastro.
 
 #### Para iniciar o servidor do **Django** digite o comando a seguir, de dentro do diretório do projeto:
 
