@@ -1,5 +1,5 @@
 # django-fatec
-Projeto exemplo para curso de **Django**
+Projeto exemplo para curso de **Django** na **FATEC Prof. Jessen Vidal**
 
 
 #### Se alguém tiver alguma problema em relação ao banco de dados, apague o arquivo *db.sqlite3* de dentro do projeto e execute novamente os comandos:
