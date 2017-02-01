@@ -8,11 +8,29 @@
 	{% block extra_css %}{% endblock %}
 </head>
 <body>
-	<h3>Bem vindo!</h3>
+	{% if user.is_authenticated %}
+		<h3>Bem vindo, {{ user }}!</h3>
+	{% else %}
+		<h3>Bem vindo ao sistema de RH!</h3>
+		<h5>Cadastre-se ou entre com seu usuário no admin.</h5>
+	{% endif %}
 	<div>
-		<a href="{% url 'home' %}"><button>Home</button></a>
-		<a href="{% url 'admin:index' %}"><button>Admin</button></a>
+		<a href="{% url 'home' %}">
+			<button>Home</button>
+		</a>
 		<button>Envie seu currículo</button>
+		{% if user.is_authenticated %}
+			<a href="{% url 'admin:logout' %}">
+				<button style="background-color: red;color: white;">Sair</button>
+			</a>
+		{% else %}
+			<a href="{% url 'cadastro' %}">
+				<button style="background-color: blue;color: white;">Cadastrar</button>
+			</a>
+			<a href="{% url 'admin:index' %}">
+				<button>Admin</button>
+			</a>
+		{% endif %}
 	</div>
 	{% block conteudo %}{% endblock %}
 	{% block extra_js %}{% endblock %}

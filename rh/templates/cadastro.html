@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastro{% endblock %}
+
+{% block conteudo %}
+	FORM
+	<form action="POST">
+		{% csrf_token %}
+		{{ form }}
+	</form>
+{% endblock %}
