@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>RH: {% block title %}{% endblock %}</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+
+	{% block extra_css %}{% endblock %}
+</head>
+<body>
+	<h3>Bem vindo!</h3>
+	<div>
+		<a href="{% url 'home' %}"><button>Home</button></a>
+		<a href="{% url 'admin:index' %}"><button>Admin</button></a>
+		<button>Envie seu currículo</button>
+	</div>
+	{% block conteudo %}{% endblock %}
+	{% block extra_js %}{% endblock %}
+</body>
+</html>
