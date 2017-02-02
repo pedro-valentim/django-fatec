@@ -1,10 +1,12 @@
 # coding: utf8
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Aluno(models.Model):
     nome = models.CharField(u'Nome', max_length=100)
     datacadastro = models.DateTimeField(auto_now_add=True)
+    user = models.OneToOneField(User)
 
     def __unicode__(self):
         return self.nome
