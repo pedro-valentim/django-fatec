@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Cadastro{% endblock %}
+{% block title %}Login{% endblock %}
 
 {% block conteudo %}
 	{% if messages %}
@@ -15,7 +15,7 @@
 		<form method="POST">
 			{% csrf_token %}
 			{{ form }}<br>
-			<button type="submit">Cadastrar</button>
+			<button type="submit">Entrar</button>
 		</form>
 	</div>
 {% endblock %}

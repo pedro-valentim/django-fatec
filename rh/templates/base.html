@@ -5,6 +5,28 @@
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
 
+	<style type="text/css">
+		ul.errorlist {
+		    color: red;
+		    list-style-type: none;
+		}
+		ul.messages li {
+			padding: 5px;
+			text-align: center;
+		    color: white;
+		    list-style-type: none;
+		    width: 80%;
+		    border-radius: 6px;
+		    border: 1px solid black;
+		}
+		ul.messages li.error {
+		    background-color: red;
+		}
+		ul.messages li.success {
+		    background-color: green;
+		}
+	</style>
+
 	{% block extra_css %}{% endblock %}
 </head>
 <body>
@@ -12,23 +34,23 @@
 		<h3>Bem vindo, {{ user }}!</h3>
 	{% else %}
 		<h3>Bem vindo ao sistema de RH!</h3>
-		<h5>Cadastre-se ou entre com seu usuário no admin.</h5>
+		<h5>Cadastre-se ou entre com seu usuário.</h5>
 	{% endif %}
 	<div>
 		<a href="{% url 'home' %}">
 			<button>Home</button>
 		</a>
-		<button>Envie seu currículo</button>
 		{% if user.is_authenticated %}
-			<a href="{% url 'admin:logout' %}">
+			<button>Envie seu currículo</button>
+			<a href="{% url 'logout' %}">
 				<button style="background-color: red;color: white;">Sair</button>
 			</a>
 		{% else %}
 			<a href="{% url 'cadastro' %}">
 				<button style="background-color: blue;color: white;">Cadastrar</button>
 			</a>
-			<a href="{% url 'admin:index' %}">
-				<button>Admin</button>
+			<a href="{% url 'login' %}">
+				<button>Login</button>
 			</a>
 		{% endif %}
 	</div>

@@ -5,6 +5,11 @@ from django.forms.widgets import PasswordInput
 from curriculo.models import Aluno
 
 
+class LoginForm(forms.Form):
+    username = forms.CharField(label='Usuário')
+    password = forms.CharField(widget=PasswordInput)
+
+
 class UserForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
@@ -13,6 +18,8 @@ class UserForm(forms.ModelForm):
 
     def save(self, *args, **kwargs):
         user = super(UserForm, self).save(*args, **kwargs)
+        user.set_password(self.cleaned_data['password'])
+        user.save()
 
         aluno = Aluno()
         aluno.user = user
