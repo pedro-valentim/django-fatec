@@ -2,7 +2,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.forms.widgets import PasswordInput
-from curriculo.models import Aluno
+from curriculo.models import Aluno, Curriculo
 
 
 class LoginForm(forms.Form):
@@ -14,6 +14,22 @@ class AlunoForm(forms.ModelForm):
     class Meta:
         model = Aluno
         exclude = ('user', )
+
+
+class CurriculoForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        self.request_user = kwargs.pop('request_user')
+        super(CurriculoForm, self).__init__(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        instance = super(CurriculoForm, self).save(*args, **kwargs)
+        instance.aluno = self.request_user.aluno
+        instance.save()
+        return instance
+
+    class Meta:
+        model = Curriculo
+        exclude = ('aluno', )
 
 
 class UserForm(forms.ModelForm):

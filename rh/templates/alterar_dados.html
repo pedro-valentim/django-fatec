@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block title %} Altere seus dados {% endblock %}
+
 {% block conteudo %}
 	<form method="POST">
 		{% csrf_token %}

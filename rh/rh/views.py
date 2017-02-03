@@ -1,7 +1,12 @@
 # coding: utf8
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserForm, LoginForm, AlunoForm
+from .forms import (
+    CurriculoForm,
+    UserForm,
+    LoginForm,
+    AlunoForm,
+)
 from django.contrib.auth import (
     authenticate,
     logout as django_logout,
@@ -13,6 +18,17 @@ from django.contrib.auth.decorators import login_required
 
 def home(request, **kwargs):
     return render(request, 'home.html', {})
+
+
+@login_required(login_url='/login/')
+def enviar_curriculo(request, **kwargs):
+    context = {}
+    form = CurriculoForm(request.POST or {}, request.FILES or {}, request_user=request.user)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+    context['form'] = form
+    return render(request, 'enviar_curriculo.html', context)
 
 
 @login_required(login_url='/login/')

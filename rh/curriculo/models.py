@@ -30,7 +30,7 @@ class Curriculo(models.Model):
     aluno = models.ForeignKey(Aluno, null=True)
 
     def __unicode__(self):
-        return u'Currículo: %i' % self.id
+        return u'Curriculo: %i' % self.id
 
     def __str__(self):
-        return u'Currículo: %i' % self.id
+        return u'Curriculo: %i' % self.id
