@@ -31,7 +31,7 @@
 </head>
 <body>
 	{% if user.is_authenticated %}
-		<h3>Bem vindo, {{ user }}!</h3>
+		<h3>Bem vindo, {{ user.aluno|default:user }}!</h3>
 	{% else %}
 		<h3>Bem vindo ao sistema de RH!</h3>
 		<h5>Cadastre-se ou entre com seu usuário.</h5>
@@ -42,6 +42,9 @@
 		</a>
 		{% if user.is_authenticated %}
 			<button>Envie seu currículo</button>
+			<a href="{% url 'alterar_dados' %}">
+				<button>Altere seus dados</button>
+			</a>
 			<a href="{% url 'logout' %}">
 				<button style="background-color: red;color: white;">Sair</button>
 			</a>

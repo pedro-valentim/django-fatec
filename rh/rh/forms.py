@@ -10,6 +10,12 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=PasswordInput)
 
 
+class AlunoForm(forms.ModelForm):
+    class Meta:
+        model = Aluno
+        exclude = ('user', )
+
+
 class UserForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):

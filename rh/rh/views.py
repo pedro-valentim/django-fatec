@@ -1,16 +1,38 @@
 # coding: utf8
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserForm, LoginForm
+from .forms import UserForm, LoginForm, AlunoForm
 from django.contrib.auth import (
     authenticate,
     logout as django_logout,
     login as django_login
 )
+from django.http import Http404
+from django.contrib.auth.decorators import login_required
 
 
 def home(request, **kwargs):
     return render(request, 'home.html', {})
+
+
+@login_required(login_url='/login/')
+def alterar_dados(request, **kwargs):
+    context = {}
+
+    if not hasattr(request.user, 'aluno'):
+        raise Http404("Você não possui referencia a aluno.")
+
+    aluno = request.user.aluno
+
+    if request.method == 'POST':
+        form = AlunoForm(request.POST, instance=aluno)
+        if form.is_valid():
+            form.save()
+    else:
+        form = AlunoForm(instance=aluno)
+
+    context['form'] = form
+    return render(request, 'alterar_dados.html', context)
 
 
 def logout(request, **kwargs):
@@ -29,7 +51,7 @@ def login(request, **kwargs):
             if user is not None:
                 if user.is_active:
                     django_login(request, user)
-                    return redirect('home')
+                    return redirect(request.GET.get('next', 'home'))
             else:
                 messages.error(request, 'Usuário e senha não conferem!')
     context['form'] = form
